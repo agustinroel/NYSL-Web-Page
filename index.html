@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="icon" href="img/nysl_logo.png">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="shortcut icon" sizes="196x196" href="img/nysl_logo.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Firebase Database Quickstart">
+    <meta name="theme-color" content="#303F9F">
+
+    <title>Home - NYSL</title>
+</head>
+
+<body>
+    <!-- HOME PAGE -->
+    <div id="app">
+        <div class="home container-fluid p-3 mb-2 main-content">
+            <div class="row">
+                <div class="col mb-2">
+                    <div class="dropdown show float-right">
+                        <a class="btn btn-sm btn-info float-right" href="#" role="button" id="dropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <p class="text-white signedText">Signed in as {{ username }} <img id="userphoto"
+                                    v-bind:src="userphoto"> </p>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#" v-on:click="signOut">Sign Out</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <img class="mx-auto mt-1" id="logo" src="img/nysl_logo.png" alt="logo">
+            </div>
+            <div class="row">
+                <div class="col text-center mt-4 ">
+                    <a class="google btn btn-outline-dark shadow mb-2" onclick="loginGoogle()" role="button"
+                        style="text-transform:none">
+                        <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in"
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                        Login with Google
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <h1 class="mx-auto font-weight-bold">About Us</h1>
+            </div>
+            <div class="row">
+                <div class="col mx-auto mb-4 text-center">
+                    <div class="main-text bg-light">
+                        <div class="ml-3 mr-3 mt-3">
+                            <h2>Mission</h2>
+                            <p class="mb-1">To support young athletes living in Chicago's northside neighborhoods, who
+                                have
+                                an
+                                interest in
+                                learning and playing soccer, with opportunities to learn and practice skills related to
+                                the
+                                game
+                                of
+                                soccer, specifically those skills around team cooperation and good sportsmanship.</p>
+
+                            <h2>Vision</h2>
+                            <p class="mb-1">The Northside Youth Soccer League aspires to develop strong, well-rounded,
+                                and
+                                mindful
+                                athletes
+                                through the
+                                building of character, self-discipline, and leadership.</p>
+
+                            <h2>General Information</h2>
+                            <p class="mb-1">The Northside Youth Soccer League was established in 1996 to provide
+                                athletes
+                                residing
+                                in Chicago's
+                                northside neighborhoods an
+                                environment in which to learn and play soccer. To be a member of NYSL, you must be
+                                between
+                                the
+                                ages
+                                of 4 - 12 and reside in a Chicago northside neighborhood. NYSL is run by a small
+                                full-time
+                                staff,
+                                and relies on the generous volunteer time of parents and previous league members.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mx-auto">
+                    <a class="btn mb-5 orange" href="mailto:nysl@chisoccer.org">Contact Us!</a>
+                </div>
+            </div>
+        </div>
+        <!-- GAME INFO PAGE -->
+        <div class="game-info p-3 mb-2 bg-success main-content container-fluid">
+            <div class="row">
+                <div class="col mb-2">
+                    <div class="dropdown show float-right">
+                        <a class="btn btn-sm btn-info float-right" href="#" role="button" id="dropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <p class="text-white signedText">Signed in as {{ username }} <img id="userphoto"
+                                    v-bind:src="userphoto"> </p>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#" v-on:click="signOut">Sign Out</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <img src="img/iconocalendario.png" alt="logo_calendario">
+                </div>
+            </div>
+            <div class="row">
+                <h1 class="mx-auto font-weight-bold">Game Info</h1>
+            </div>
+            <div class="row">
+                <div class="col col-md mb-4 text-center">
+                    <!-- tabla -->
+                    <table class="table matches-table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">September</th>
+                                <th scope="col">Teams</th>
+                                <th scope="col">Location</th>
+                                <th scope="col">Times</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center" rowspan="2">9/01</td>
+                                <td><a href="#" class="match" v-on:click="partidos(1)" id="partido1">U1 and U4</a></td>
+                                <td>AJ Katzenmaier</td>
+                                <td>9:30 a.m.</td>
+                            </tr>
+                            <tr>
+                                <td><a href="#" class="match" v-on:click="partidos(2)" id="partido2">U3 and U2</a></td>
+                                <td>Greenbay</td>
+                                <td>1:00 p.m.</td>
+                            </tr>
+                            <tr>
+
+                                <td rowspan="2">9/08</td>
+                                <td><a href="#" class="match" v-on:click="partidos(3)" id="partido3">U5 and U6</a></td>
+                                <td>Howard A Yeager</td>
+                                <td>9:30 a.m.</td>
+                            </tr>
+                            <tr>
+                                <td><a href="#" class="match" v-on:click="partidos(4)" id="partido4">U6 and U1</a></td>
+                                <td>Marjorie P Hart</td>
+                                <td>1:00 p.m.</td>
+                            </tr>
+                            <tr>
+
+
+                                <td rowspan="2">9/15</td>
+                                <td><a href="#" class="match" v-on:click="partidos(5)" id="partido5">U2 and U4</a></td>
+                                <td>North</td>
+                                <td>9:30 a.m.</td>
+                            </tr>
+                            <tr>
+                                <td><a href="#" class="match" v-on:click="partidos(6)" id="partido6">U3 and U5</a></td>
+                                <td>AJ Katzenmaier</td>
+                                <td>1:00 p.m.</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">9/22</td>
+                                <td><a href="#" class="match" v-on:click="partidos(7)" id="partido7">U1 and U3</a></td>
+                                <td>South</td>
+                                <td>9:30 a.m.</td>
+                            </tr>
+                            <tr>
+                                <td><a href="#" class="match" v-on:click="partidos(8)" id="partido8">U2 and U6</a></td>
+                                <td>Howard A Yeager</td>
+                                <td>1:00 p.m.</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">9/29</td>
+                                <td><a href="#" class="match" v-on:click="partidos(9)" id="partido9">U4 and U5</a></td>
+                                <td>Greenbay</td>
+                                <td>9:30 a.m.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col mx-auto mb-4 text-center">
+                    <div class="main-text">
+                        <table class="table mt-2 matches-table">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">October</th>
+                                    <th scope="col">Teams</th>
+                                    <th scope="col">Location</th>
+                                    <th scope="col">Times</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td rowspan="2">10/06</td>
+                                    <td><a href="#" class="match" v-on:click="partidos(10)" id="partido10">U2 and U5</a>
+                                    </td>
+                                    <td>Marjorie P Hart</td>
+                                    <td>9:30 a.m.</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#" class="match" v-on:click="partidos(11)" id="partido11">U1 and U6</a>
+                                    </td>
+                                    <td>South</td>
+                                    <td>1:00 p.m.</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">10/08</td>
+                                    <td><a href="#" class="match" v-on:click="partidos(12)" id="partido12">U3 and U4</a>
+                                    </td>
+                                    <td>Howard A Yeager</td>
+                                    <td>9:30 a.m.</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#" class="match" v-on:click="partidos(13)" id="partido13">U5 and U1</a>
+                                    </td>
+                                    <td>Greenbay</td>
+                                    <td>1:00 p.m.</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">10/20</td>
+                                    <td><a href="#" class="match" v-on:click="partidos(14)" id="partido14">U6 and U3</a>
+                                    </td>
+                                    <td>North</td>
+                                    <td>9:30 a.m.</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#" class="match" v-on:click="partidos(15)" id="partido15">U2 and U4</a>
+                                    </td>
+                                    <td>Marjorie P Hart</td>
+                                    <td>1:00 p.m.</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">10/27</td>
+                                    <td><a href="#" class="match" v-on:click="partidos(16)" id="partido16">U3 and U1</a>
+                                    </td>
+                                    <td>AJ Katzenmaier</td>
+                                    <td>9:30 a.m.</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#" class="match" v-on:click="partidos(17)" id="partido17">U5 and U6</a>
+                                    </td>
+                                    <td>Howard A Yeager</td>
+                                    <td>1:00 p.m.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-md mx-auto mb-4 text-center">
+                    <div class="main-text">
+                        <table class="table table-borderless table-responsive mb-4 ">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <h3>Facility Type:</h3>
+                                    </td>
+                                    <td>Outdoor</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h3>Additional Information:</h3>
+                                    </td>
+                                    <td>If deemed necesasary by NYSL, games may be shorened or cancelled due to
+                                        extreme weather conditions.</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h3>Please direct all questions to:</h3>
+                                    </td>
+                                    <td>Michael Randall, League Coordinator</td>
+                                </tr>
+                                <tr>
+                                    <td>
+
+                                    </td>
+                                    <td>(630) 690-8132</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h3>Email:</h3>
+                                    </td>
+                                    <td id="michael-mail"><a
+                                            href="mailto:michael.randall@chisoccer.org">michael.randall@chisoccer.org</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- MATCH FORUM PAGE -->
+        <div class="p-3 mb-2 bg-success main-content container-fluid match-forum">
+            <div class="row">
+                <div class="col mb-2">
+                    <div class="dropdown show float-right">
+                        <a class="btn btn-sm btn-info float-right" href="#" role="button" id="dropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <p class="text-white signedText">Signed in as {{ username }} <img id="userphoto"
+                                    v-bind:src="userphoto"> </p>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#" v-on:click="signOut">Sign Out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <img src="img/iconochat.png" alt="logo_chat">
+                </div>
+            </div>
+            <div class="row">
+                <h1 class="mx-auto font-weight-bold">Match Forum</h1>
+            </div>
+            <div class="row">
+                <h2 class="mx-auto font-weight-bold text-white"> {{ match }}</h2>
+            </div>
+            <div class="row" v-if="currentUser != null">
+                <div class="col mx-auto text-center mt-5">
+                    <h3 class="text-white">Post a messagge</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 text-right align-middle">
+                    <label class="text-center text-white" for="message">Message:</label><input class="input text-center"
+                        type="text" name="message" id="message" v-model="message" v-on:keydown.enter="submit">
+                </div>
+                <div class="col">
+                    <input v-on:click="submit" class="btn btn-sm btn-primary submit-message align-middle mt-1" type="submit" value="Submit">
+                </div>
+            </div>
+            <div class="row">
+
+            </div>
+            <div class="row">
+                <div class="col mt-4">
+                    <div class="table-responsive">
+                        <table class="table ">
+                            <thead class="thead-dark">
+                                <tr class="font-weight-bold ">
+                                    <th>User</th>
+                                    <th>Message</th>
+                                </tr>
+                            </thead>
+                            </tr>
+                            <tbody class="table-striped">
+                                <tr v-for="post in posts">
+                                    <td class="font-weight-bold">
+                                        <img class="postUserPhoto" v-bind:src="userphoto"> {{ username }}
+                                    </td>
+                                    <td>
+                                        {{ post.text }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- RULES PAGE -->
+        <div class="rules p-3 mb-2 bg-success main-content container-fluid">
+            <div class="row">
+                <div class="col mb-2">
+                    <div class="dropdown show float-right">
+                        <a class="btn btn-sm btn-info float-right" href="#" role="button" id="dropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <p class="text-white signedText mb-0">Signed in as {{ username }} <img id="userphoto"
+                                    v-bind:src="userphoto"> </p>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#" v-on:click="signOut">Sign Out</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <img src="img/iconorules.png" alt="logo_rules">
+                </div>
+            </div>
+            <div class="row">
+                <h1 class="mx-auto font-weight-bold">Rules & Policies</h1>
+            </div>
+            <div class="row">
+                <div class="main-text bg-light ml-3 mr-3 mt-3 mb-5">
+                    <div class="ml-3 mr-3 mt-3 mb-3">
+                        <h2 class="text-center">RULES OF PLAY AND POLICIES</h2>
+                        <p>FIFA rules shall govern NYSL play except as modified herein.</p>
+                        <h2>SPORTSMANSHIP</h2>
+                        <ul>
+                            <li>The common interest that members of the Association share is to inspire youth to
+                                practice
+                                the
+                                ideals of sportsmanship and fair play. Any player, coach, team, parent, spectator,
+                                administrator
+                                or referee whose behaviour detracts from this purpose is subject to disciplinary action
+                                regardless of technical soccer background, expertise, accomplishments or standing.</li>
+                        </ul>
+                        <h2>FIFA FIELD REGULATIONS</h2>
+                        <ol>
+                            <li>
+                                <h2>DIMENSIONS.</h2>FIFA Law 1 provides for flexible external field dimensions within a
+                                given
+                                maximum and minimum width and lenght. These dimensions should be adhered to for all
+                                fields
+                                used
+                                by teams under 12 and older.
+                            </li>
+                            <li>
+                                <h2>COMPETITION FIELDS.</h2>Fields used within the competition program must be a minimum
+                                of
+                                100
+                                x 60 yards. Leagues, districts or associations participating in the state competition
+                                program
+                                that are unable to provide a field that meets these minimum requirements must advise the
+                                State
+                                Competition Board which will assign its Fields Committee to inspect the field and
+                                recommend
+                                to
+                                the Board whether or not a waiver of the minimum dimensions should be granted. Teams
+                                from
+                                leagues, districts or associations that are unable to provide an acceptable field may be
+                                required to play all their games away.
+                            </li>
+                            <li>
+                                <h2>FIELDS USED BY YOUNG AGE GROUPS.</h2>
+                                <ol type="a">
+                                    <li>U-6 play on a field approximately 20 X 40 yards with no penalty areas. Fields
+                                        for
+                                        older
+                                        age groups should be progressively larger.</li>
+                                    <li>U-8 plays on a field 40-50 yards in length and 20-30 yards width.</li>
+                                    <li>U-10 play on a field 70-80 yards in length and 40-50 yards in width.</li>
+                                    <li>In addition, fields used by young age groups may have their internal dimensions
+                                        and
+                                        size
+                                        of goal similarly modified.</li>
+                                </ol>
+                            </li>
+                            <li>
+                                <h2>TEAM BENCH AREAS</h2>
+                                <ol type="a">
+                                    <li>Reaction & District Programs
+                                        <ul>
+                                            <li>The decision for team/spectator placement on the field will be made by
+                                                the
+                                                governing body of that team. A team's bench area shall consist of that
+                                                area
+                                                at
+                                                least one (1) yard away from the touchline and extending to twenty yards
+                                                (20)
+                                                both ways from the halfways from the halfway line. In the event that
+                                                field
+                                                conditions require team benches to be on the same side of the field, a
+                                                team's
+                                                bench area shall consist of that area two (2) yards away from the
+                                                touchline
+                                                and
+                                                extending twenty yards one (1) way from the halfway line.</li>
+                                            <li>The home team has first choice as to where it wishes to locate its bench
+                                                area.
+                                                Coaches and substitutes are required to remain within their bench area.
+                                                Coaches
+                                                and substitutes are required to remain within their bench area during
+                                                the
+                                                game.
+                                                Parents and spectators should occupy the same side of the field as the
+                                                team
+                                                they
+                                                are supporting.</li>
+                                        </ul>
+                                    <li>State Competition League Only
+                                        <ul>
+                                            <li>Except where it is determined by the referee to be impractical, team
+                                                bench
+                                                areas
+                                                shall be along the same touchline. Each team bench area shall be located
+                                                two
+                                                yards outside the touchline, beggining not closer than five yards from
+                                                midfield
+                                                and extending not further than twenty yards from midfield. The home team
+                                                shall
+                                                have the right to choose the location of its bench area. Coaches and
+                                                substitutes
+                                                must remain within their team's bench area during the game.</li>
+                                            <li>Parents and spectator must occupy the sideline opposite the team bench
+                                                areas.
+                                                Supporters of a team must assemble on the side of the midfield facing
+                                                the
+                                                team
+                                                bench area of that team. There shall be a buffer zone extending ten
+                                                yards on
+                                                each side of the midfield that may not be occupied by parents or
+                                                spectators.
+                                                Match officials shall be empowered to enforce these provisions and may
+                                                suspend
+                                                or terminate games in the event that any team, coach, parent, or
+                                                spectator
+                                                declines to abide by requests from match officials to comply with these
+                                                standards.</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                        </ol>
+                        <h2>EQUIPMENT</h2>
+                        <ul>
+                            <li>We will abide by and accept equipment standards as defined by FIFA, USSF and USYSA.</li>
+                        </ul>
+
+                        <h2>NUMBER OF PLAYERS</h2>
+                        <ul>
+                            <li>
+                                <h2>TEAM SIZE.</h2>Except as noted below, team rosters shall consist of not less than
+                                eleven
+                                nor
+                                more than eighteen players. A team must have at least seven (7) players present and able
+                                to
+                                play
+                                before referees are permitted to start a sanctioned game. No more than eleven (11)
+                                players
+                                per
+                                team may be on the field at any one time during the game.
+                            </li>
+                            <li>
+                                <h2>SIZE OF AGE GROUP TEAMS.</h2>In order to give player-s maximum opportunity to
+                                develop in
+                                the
+                                game of soccer, U-6 through U-10 play modified rules and size of roster as stated in
+                                United
+                                States Youth Soccer Association (USYSA) rules. It is strongly recommended that U-6 and
+                                U-8
+                                play
+                                4v4. UYSA shall not sanction games involving teams under 10 or younger unless such games
+                                are
+                                conducted with not more than eight (8) players per side. (National rule 4036 section 2)
+                            </li>
+                            <li>Recreational/Developmental players at other ages or where numbers in the playing area
+                                are
+                                low
+                                are strongly encouraged to play small-sided games on reduced field size.</li>
+                        </ul>
+
+                        <h2>SUBSTITUTIONS</h2>
+                        <ul>
+                            <li>Teams may make an unlimited numer of substitutions at the times indicated below. A
+                                player
+                                who
+                                has been replaced may re-enter the game as a substitute at a later time.
+                                <ol type="1">
+                                    <li>Prior to a trow-in your favor.</li>
+                                    <li>Prior to a goalkick by either team.</li>
+                                    <li>After a goal by either team.</li>
+                                    <li>After an injury, by either team, when the referee stops play.</li>
+                                    <li>At half time.</li>
+                                    <li>When a player has been "cautioned", only the player receiving "caution"may be
+                                        substituted.</li>
+                                </ol>
+                        </ul>
+
+                        <h2>CONFISCATED PLAYER PASSES</h2>
+                        <ul>
+                            <li>Passes of any individual(s) ejected from any match shall be retained after the match by
+                                the
+                                referee. The pass of any individual who has received a third caution (yellow card)
+                                during a
+                                playing year shall be confiscated by the referee at the conclusion of the match in which
+                                the
+                                third caution was received. That player will be suspended from playing in the next game
+                                in
+                                which
+                                the offending participant would otherwise be eligible to participate. This process will
+                                continue
+                                so that for every third yellow card received during a playing year, the player will be
+                                suspended
+                                from playing in the next game (after the receipt of a third yellow card) for which the
+                                offending
+                                participate would otherwise be eligible to participate. The referee shall deliver all
+                                confiscated passes to the UYSA State Office within forty-eight (48) hours of the
+                                conclusion
+                                of
+                                the match.</li>
+                        </ul>
+
+                        <h2>ALL-PLAY</h2>
+                        <ul>
+                            <li>All-play means that every recreation player on every team shall play at least fifty
+                                percent
+                                of
+                                each game. Coaches in the competition program are encouraged to play their players 50%
+                                of
+                                each
+                                game.
+                                <ul>
+                                    <li>A Coach shall be permitted to not play a player 50% of each game under special
+                                        circumstances, e.g., unexcused absences from practice and/or games,
+                                        ungentlemanly
+                                        conduct at practice and/or games, and injuries.</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h2>PLAYER'S EQUIPMENT</h2>
+                        <ul>
+                            <li>Where the uniform colors of both teams are so similar that the referee orders a change,
+                                the
+                                designated home team must change to colors distinct from those of the opponent.</li>
+                        </ul>
+                        <h2>MIXED TEAMS</h2>
+                        <ul>
+                            <li>
+                                <h2>GIRLS PLAYING ON BOY'S TEAMS.</h2>Girls are eligible to play on boys' teams with
+                                parent/guardian permission.
+                            </li>
+                            <li>
+                                <h2>TYPES OF TEAMS.</h2>Teams with females only are Girls Teams. All others are Boys
+                                Teams
+                            </li>
+                        </ul>
+                        <h2>COACHING FROM THE SIDELINES</h2>
+                        <ul>
+                            <li>Coaching from the sidelines, i.e., giving direction to one's own team on points of
+                                strategy
+                                and
+                                position, is permitted provided that:
+                                <ol type="1">
+                                    <li>No mechanical, electrical or other devices are used to aplify the vioce.</li>
+                                    <li>The tone of voice is informative and not a harangue.</li>
+                                    <li>The coaching takes place within the team's bench area.</li>
+                                    <li>No coach, substitute, player or spectator is to make derogatory remarks or
+                                        gestures
+                                        to
+                                        the referees, linesmen, players, substitutes or spectators.</li>
+                                    <li>No coach, player, substutite or spectator is tu use profanity or incite, in any
+                                        manner,
+                                        disruptive behavior of any kind.</li>
+                                </ol>
+                            </li>
+                        </ul>
+                        <h2>GAME TERMINATION</h2>
+                        <ul>
+                            <li>Any game terminated after 15 minutes into the second half by the referee by reason of
+                                the
+                                elements, or by reason of grave disorder on the part of the coaches, players or
+                                spectator of
+                                a
+                                team that is losing at the point that the game is terminated, shall stand as a completed
+                                game.
+                                If a team is ahead and the game is called because of their actions they will lose the
+                                game
+                                1-0.
+                            </li>
+                        </ul>
+                        <h2>CONDITIONS OF REPLAY OF GAMES</h2>
+                        <ul>
+                            <li>Any game which is required to be replayed as a result of any protest or appeal, shall be
+                                subject
+                                to the following conditions:
+                                <ol type="1">
+                                    <li>The game shall be replayed on the same field, as was the suspended or protested
+                                        game,
+                                        unless otherwise agreed by the coaches.</li>
+                                    <li> impartial referees shall be assigned to the new game.</li>
+                                    <li>The PROTEST AND APPEALS COMMITTEE shall have the power to impose such additional
+                                        conditions on the replay of the game, as it deems appropriate under the
+                                        circumstances.
+                                    </li>
+                                </ol>
+                            </li>
+                        </ul>
+                        <h2>REFEREE RESPONSIBILITIES</h2>
+                        <ul class="mb-5">
+                            <li>The referee shall verify the identity of the players and coaches with his/her player
+                                pass.
+                                He
+                                shall collect the passes of those players and coaches who are to participate in the
+                                game.
+                                The
+                                referee must allow no player into the game for whom he/she has no pass.</li>
+                            <li>Upon completion of the game, the referee shall send his/her report to the UYSA offices
+                                within
+                                four (4) days, holidays excluded. If a coach or a player is ejected, the referee report
+                                form
+                                is
+                                required within forty-eight (48) hours along with the player/coach pass.</li>
+                            <li>A referee report form must be filed for every game played.</li>
+                            <li>Each team must determine whether or not referees are registered prior to the start of
+                                each
+                                game.
+                                Upon request, referees officiating at any game must willingly and without bias, show
+                                documentation regarding their certification level and registration standing with the
+                                USSF to
+                                coach, assistant coach, or team captain of teams participating in that game. Proir to
+                                the
+                                game a
+                                goach may decide to postpone the game if the referees do not produce the requested
+                                documentation. The game is to be replayed at a later date.</li>
+                            <li>Referees not complying with this section will be referred to the Disciplinarty
+                                Committee.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <nav class="navegador bg-dark fixed-bottom col-12">
+            <div class="row">
+                <div class="col-4 text-center"><a id="index" href="#"><img class="iconos" src="img/iconocasa.png"
+                            alt="icono_casa"></a></div>
+                <div class="col-4 text-center"><a id="game-info" href="#"><img class="iconos"
+                            src="img/iconocalendario.png" alt="icono_calendario"></a></div>
+                <div class="col-4 text-center"><a id="rules" href="#"><img class="iconos" src="img/iconorules.png"
+                            alt="icono_reglas"></a></div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
